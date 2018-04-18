@@ -7,7 +7,7 @@ const InputText = ({ text, ...props }) => (
     <View style={styles.container}>
         <TextInput
             placeholder={text}
-            style={{ fontSize: 15, bottom: 10, ...props }}
+            style={{ fontSize: 15, bottom: 10, color: '#1CABE9' }}
             {...props}
             autoCorrect={false}
             placeholderTextColor='#00000099'

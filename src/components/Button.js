@@ -18,8 +18,9 @@ const Button = ({ text, buttonColor, textButtonColor, ...props }) => (
     >
       <Text
         style={{
-          ...props,
-          color: textButtonColor,
+          fontSize: 15,
+          fontWeight: '800',
+          color: textButtonColor
         }}
       >
         {text}

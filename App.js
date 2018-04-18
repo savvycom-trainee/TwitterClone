@@ -11,6 +11,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import Welcome from './src/screens/Welcome';
 import SignUp from './src/screens/SignUp';
+import Login from './src/screens/Login';
 
 export default class App extends Component {
   render() {
@@ -23,14 +24,20 @@ export default class App extends Component {
 }
 
 const Navigator = StackNavigator({
-  Welcome: {
+  WelcomeScreen: {
     screen: Welcome,
     navigationOptions: {
       header: null
     }
   },
-  SignUp: {
+  SignUpScreen: {
     screen: SignUp,
+    navigationOptions: {
+      header: null
+    }
+  },
+  LoginScreen: {
+    screen: Login,
     navigationOptions: {
       header: null
     }

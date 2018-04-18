@@ -20,7 +20,7 @@ export default class SignUp extends Component {
               <ButtonText
                 text="Cancel"
                 color="#1CABE9"
-                // onPress={}
+                onPress={() => this.props.navigation.goBack()}
               />
               <View style={styles.logoView}>
                 {/* eslint-disable */}
@@ -32,7 +32,7 @@ export default class SignUp extends Component {
               </View>
             </View>
             <View style={styles.inputView}>
-              <InputText text="Name" color='#1CABE9' />
+              <InputText text="Name" autoFocus />
               <InputText text="Phone number or email address" />
             </View>
             <View style={styles.footerView}>

@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import * as d from '../../Constants';
 import { Button, ButtonText } from '../components';
+import {
+  SignUpScreen, LoginScreen
+} from '../../Screens';
 
 export default class Welcome extends Component {
   render() {
+  const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         {/* eslint-disable */}
@@ -15,17 +19,19 @@ export default class Welcome extends Component {
             {"See what's\nhappening in the\nworld right now."}
           </Text>
           <Button
-            fontWeight="800"
-            fontSize={15}
             text="Get started"
             buttonColor="#1CABE9"
             textButtonColor="#FFFFFF"
-            onPress={this.props.navigation.navigate(SingUp)}
+            onPress={() => navigate(SignUpScreen)}
           />
         </View>
         <View style={styles.loginView}>
           <Text style={styles.textLoginStyle}>{'Have an account already? '}</Text>
-          <ButtonText text="Log in" color="#1CABE9" />
+          <ButtonText
+            text="Log in"
+            color="#1CABE9"
+            onPress={() => navigate(LoginScreen)}
+          />
         </View>
       </View>
     );
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
   textSignUpStyle: {
     fontSize: 30,
     fontWeight: '800',
-    bottom: 20
+    bottom: 20 * d.height
   },
   logoStyle: {
     height: 30 * d.height,
@@ -55,7 +61,6 @@ const styles = StyleSheet.create({
   loginView: {
     flexDirection: 'row',
     left: 35 * d.width,
-    bottom: 40
+    bottom: 40 * d.height
   },
-  textLoginStyle: {}
 });
