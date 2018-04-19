@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
-import AboutTwitter from './src/screens/AboutTwitter';
+import ForgotPassword from './src/screens/ForgotPassword';
 
-AppRegistry.registerComponent('Twitter', () => App);
+AppRegistry.registerComponent('Twitter', () => ForgotPassword);

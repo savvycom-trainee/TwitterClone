@@ -9,8 +9,6 @@ const SmallButton = ({ text, buttonColor, textButtonColor, ...props }) => (
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: buttonColor,
-        height: 35 * d.height,
-        width: 60 * d.width,
         alignSelf: 'center',
         borderRadius: 30,
         flexDirection: 'row'
@@ -19,7 +17,11 @@ const SmallButton = ({ text, buttonColor, textButtonColor, ...props }) => (
       <Text
         style={{
           ...props,
-          color: textButtonColor,
+          paddingLeft: 15 * d.width,
+          paddingRight: 15 * d.width,
+          paddingTop: 10 * d.height,
+          paddingBottom: 10 * d.height,
+          color: textButtonColor
         }}
       >
         {text}
