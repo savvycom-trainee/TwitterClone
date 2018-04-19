@@ -12,11 +12,45 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ButtonText, InputText, SmallButton } from '../components';
 import * as d from '../../Constants';
-import { AboutTwitterScreen, ForgotPasswordScreen } from '../../Screens';
+import { AboutTwitterScreen, ForgotPasswordScreen, MainScreen } from '../../Screens';
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null
+    };
+    this.navigation = this.props.navigation;
+  }
+
+  loginButton = () => {
+    if (this.state.email !== null && this.state.password !== null) {
+      return (
+        <View style={{ paddingTop: 5 * d.height, paddingRight: 10 * d.width }}>
+          <SmallButton
+            text="Log in"
+            buttonColor="#1CABE9"
+            textButtonColor="#FFFFFF"
+            onPress={() => this.navigation.navigate(MainScreen)}
+          />
+        </View>
+      );
+    }
+    return (
+      <View style={{ paddingTop: 5 * d.height, paddingRight: 10 * d.width }}>
+        <SmallButton
+          activeOpacity={1}
+          text="Log in"
+          buttonColor="#1CABE950"
+          textButtonColor="#FFFFFF"
+        />
+      </View>
+    );
+  };
+
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigation } = this.props;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -28,7 +62,7 @@ export default class Login extends Component {
                     <ButtonText
                       text="Cancel"
                       color="#1CABE9"
-                      onPress={() => this.props.navigation.goBack()}
+                      onPress={() => this.navigation.goBack()}
                     />
                   </View>
                   <View style={styles.logoView}>
@@ -41,7 +75,7 @@ export default class Login extends Component {
                   </View>
                   <TouchableOpacity
                     style={{ paddingRight: 15 }}
-                    onPress={() => navigate(AboutTwitterScreen)}
+                    onPress={() => this.navigation.navigate(AboutTwitterScreen)}
                   >
                     <Icon name="ios-more-outline" color="#1CABE9" size={40} />
                   </TouchableOpacity>
@@ -50,8 +84,18 @@ export default class Login extends Component {
               <View style={styles.inputView}>
                 <Text style={styles.textSignUpStyle}>{'Log in to Twitter'}</Text>
                 <View style={styles.inputView}>
-                  <InputText text="Phone, email or username" autoFocus />
-                  <InputText text="Password" secureTextEntry />
+                  <InputText
+                    text="Phone, email or username"
+                    autoFocus
+                    value={this.state.email}
+                    onChangeText={email => this.setState({ email })}
+                  />
+                  <InputText
+                    text="Password"
+                    secureTextEntry
+                    value={this.state.password}
+                    onChangeText={password => this.setState({ password })}
+                  />
                 </View>
               </View>
             </View>
@@ -66,17 +110,10 @@ export default class Login extends Component {
                 <ButtonText
                   text="Forgot password?"
                   color="#1CABE9"
-                  onPress={() => navigate(ForgotPasswordScreen)}
+                  onPress={() => this.navigation.navigate(ForgotPasswordScreen)}
                 />
               </View>
-              <View style={{ paddingTop: 5 * d.height, paddingRight: 10 * d.width }}>
-                <SmallButton
-                  text="Done"
-                  buttonColor="#1CABE9"
-                  textButtonColor="#FFFFFF"
-                  fontWeight="700"
-                />
-              </View>
+              {this.loginButton()}
             </View>
           </View>
         </TouchableWithoutFeedback>

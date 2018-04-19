@@ -32,12 +32,7 @@ export default class ForgotPassword extends Component {
             <Text style={styles.detailStyle}>{'Enter your email, phone number, or username.'}</Text>
             <TextInput style={styles.inputStyle} />
             <View style={{ alignSelf: 'flex-start' }}>
-              <SmallButton
-                text="Search"
-                buttonColor="#1CABE9"
-                textButtonColor="#FFFFFF"
-                fontWeight="800"
-              />
+              <SmallButton text="Search" buttonColor="#1CABE9" textButtonColor="#FFFFFF" />
             </View>
           </View>
         </ScrollView>

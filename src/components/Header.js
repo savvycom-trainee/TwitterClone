@@ -1,37 +1,28 @@
-// import React from 'react';
-// import { Image, View, StyleSheet } from 'react-native';
-// import Icon from 'react-native-vector-icons';
-// import {
-//     ButtonText
-// } from '../components';
-// import * as d from '../../Constants';
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import * as d from '../../Constants';
 
-// const Header = () => (
-//   <View style={styles.headerView}>
-//     <ButtonText text="Cancel" color="#1CABE9" onPress={() => this.props.navigation.goBack()} />
-//     <View style={styles.logoView}>
-//       {/* eslint-disable */}
-//       <Image source={require('../assets/images/TwitterLogo.png')} style={styles.logoStyle} />
-//       {/* eslint-enable */}
-//     </View>
-//     <Icon />
-//   </View>
-// );
+const Header = ({ centerHeader, rightHeader, onPressLeftIcon, onPressRightIcon }) => (
+  <View style={styles.container}>
+    <TouchableOpacity onPress={onPressLeftIcon} style={{ paddingLeft: 10 * d.width }}>
+      <Icon name="ios-contact-outline" size={35} />
+    </TouchableOpacity>
+    <View style={{ paddingTop: 5 * d.height }}>{centerHeader}</View>
+    <TouchableOpacity onPress={onPressRightIcon} style={{ paddingRight: 10 * d.width }}>
+      {rightHeader}
+    </TouchableOpacity>
+  </View>
+);
 
-// const styles = StyleSheet.create({
-//   logoStyle: {
-//     height: 30 * d.height,
-//     width: 30 * d.width,
-//     left: 105 * d.width
-//   },
-//   logoView: {
-//     alignSelf: 'center'
-//   },
-//   headerView: {
-//     flexDirection: 'row',
-//     top: 20 * d.height,
-//     left: 20 * d.width
-//   }
-// });
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 25 * d.height,
+    flexDirection: 'row',
+    borderBottomWidth: 0.5,
+    borderColor: '#00000050',
+    justifyContent: 'space-between'
+  }
+});
 
-// export { Header };
+export { Header };

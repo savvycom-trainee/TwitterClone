@@ -37,12 +37,7 @@ export default class SignUp extends Component {
             </View>
             <View style={styles.footerView}>
               <View style={{ top: 5 * d.height, right: 10 * d.width }}>
-                <SmallButton 
-                    text="Done"
-                    buttonColor="#1CABE9"
-                    textButtonColor="#FFFFFF"
-                    fontWeight='700'
-                />
+                <SmallButton text="Done" buttonColor="#1CABE9" textButtonColor="#FFFFFF" />
               </View>
             </View>
           </View>

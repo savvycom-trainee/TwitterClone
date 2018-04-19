@@ -16,7 +16,7 @@ const SmallButton = ({ text, buttonColor, textButtonColor, ...props }) => (
     >
       <Text
         style={{
-          ...props,
+          fontWeight: '700',
           paddingLeft: 15 * d.width,
           paddingRight: 15 * d.width,
           paddingTop: 10 * d.height,
