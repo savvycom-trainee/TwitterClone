@@ -11,9 +11,13 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ButtonText, InputText, SmallButton } from '../components';
 import * as d from '../../Constants';
+import {
+  AboutTwitterScreen
+} from '../../Screens';
 
 export default class Login extends Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -36,7 +40,10 @@ export default class Login extends Component {
                   />
                   {/* eslint-enable */}
                 </View>
-                <TouchableOpacity style={{ paddingRight: 15 }}>
+                <TouchableOpacity 
+                  style={{ paddingRight: 15 }}
+                  onPress={() => navigate(AboutTwitterScreen)}
+                >
                   <Icon name="ios-more-outline" color="#1CABE9" size={40} />
                 </TouchableOpacity>
               </View>
@@ -44,7 +51,7 @@ export default class Login extends Component {
             <View style={styles.inputView}>
               <Text style={styles.textSignUpStyle}>{'Log in to Twitter'}</Text>
               <View style={styles.inputView}>
-                <InputText text="Phone, email or username" />
+                <InputText text="Phone, email or username" autoFocus />
                 <InputText text="Password" secureTextEntry />
               </View>
             </View>

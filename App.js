@@ -12,6 +12,7 @@ import { StackNavigator } from 'react-navigation';
 import Welcome from './src/screens/Welcome';
 import SignUp from './src/screens/SignUp';
 import Login from './src/screens/Login';
+import AboutTwitter from './src/screens/AboutTwitter';
 
 export default class App extends Component {
   render() {
@@ -38,6 +39,12 @@ const Navigator = StackNavigator({
   },
   LoginScreen: {
     screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AboutTwitterScreen: {
+    screen: AboutTwitter,
     navigationOptions: {
       header: null
     }
