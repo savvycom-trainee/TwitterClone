@@ -46,7 +46,7 @@ const MainNavigator = TabNavigator(
         borderTopWidth: 1
       },
       activeTintColor: '#1CABE9'
-    }
-    // initialRouteName: 'Message'
+    },
+    initialRouteName: 'Notifications'
   }
 );

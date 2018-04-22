@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: d.fullWidth,
     paddingLeft: 10,
-    // paddingRight: 5,
-    paddingTop: 10
-    // marginTop: 10
+    paddingTop: 10,
+    backgroundColor: '#FFFFFF',
+    paddingBottom: 10 * d.height
   }
 });
 

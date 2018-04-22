@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 0.5,
     borderColor: '#00000050',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF'
   }
 });
 
