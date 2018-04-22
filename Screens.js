@@ -4,3 +4,7 @@ export const LoginScreen = 'LoginScreen';
 export const AboutTwitterScreen = 'AboutTwitterScreen';
 export const ForgotPasswordScreen = 'ForgotPasswordScreen';
 export const MainScreen = 'MainScreen';
+export const BookmarkScreen = 'BookmarkScreen';
+export const ListScreen = 'ListScreen';
+export const MomentScreen = 'MomentScreen';
+export const ProfileScreen = 'ProfileScreen';

@@ -1,6 +1,16 @@
-import { AppRegistry } from 'react-native';
+import React, { AppRegistry } from 'react-native';
+
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import allReducers from './reduxTest/reducers/index';
+import TaskManagerComponent from './reduxTest/components/TaskManagerComponent';
 import App from './App';
-import Main from './src/screens/Main';
-import Drawer from './src/screens/Drawer';
+
+const store = createStore(allReducers);
+const ReduxApp = () => (
+  <Provider store={store}>
+    <TaskManagerComponent />
+  </Provider>
+);
 
 AppRegistry.registerComponent('Twitter', () => App);

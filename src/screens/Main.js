@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, YellowBox } from 'react-native';
+import { View, Text } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 // import Home from './tabs/Home';
 // import Search from './tabs/Search';
@@ -9,7 +9,6 @@ import { Home, Search, Notifications, Message } from './tabs';
 
 export default class Main extends Component {
   render() {
-    YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
     return (
       <View style={{ flex: 1 }}>
         <MainNavigator>
@@ -48,5 +47,6 @@ const MainNavigator = TabNavigator(
       },
       activeTintColor: '#1CABE9'
     }
+    // initialRouteName: 'Message'
   }
 );

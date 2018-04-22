@@ -8,7 +8,7 @@ const Header = ({ centerHeader, rightHeader, onPressLeftIcon, onPressRightIcon }
     <TouchableOpacity onPress={onPressLeftIcon} style={{ paddingLeft: 10 * d.width }}>
       <Icon name="ios-contact-outline" size={35} />
     </TouchableOpacity>
-    <View style={{ paddingTop: 5 * d.height }}>{centerHeader}</View>
+    <View style={{ paddingTop: 3 * d.height }}>{centerHeader}</View>
     <TouchableOpacity onPress={onPressRightIcon} style={{ paddingRight: 10 * d.width }}>
       {rightHeader}
     </TouchableOpacity>
