@@ -7,10 +7,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
-import * as d from '../../Constants';
-import { ButtonText, InputText, SmallButton } from '../components';
+import * as d from '../../../Constants';
+import { ButtonText, InputText, SmallButton } from '../../components';
 
-export default class SignUp extends Component {
+export class SignUp extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -25,7 +25,7 @@ export default class SignUp extends Component {
               <View style={styles.logoView}>
                 {/* eslint-disable */}
                 <Image
-                  source={require('../assets/images/TwitterLogo.png')}
+                  source={require('../../assets/images/TwitterLogo.png')}
                   style={styles.logoStyle}
                 />
                 {/* eslint-enable */}

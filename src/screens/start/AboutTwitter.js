@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import * as d from '../../Constants';
-import { LinkCard } from '../components';
+import * as d from '../../../Constants';
+import { LinkCard } from '../../components';
 
-export default class AboutTwitter extends Component {
+export class AboutTwitter extends Component {
   constructor(props) {
     super(props);
     this.state = {

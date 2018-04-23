@@ -10,11 +10,11 @@ import {
   Keyboard
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { ButtonText, InputText, SmallButton } from '../components';
-import * as d from '../../Constants';
-import { AboutTwitterScreen, ForgotPasswordScreen, MainScreen } from '../../Screens';
+import { ButtonText, InputText, SmallButton } from '../../components';
+import * as d from '../../../Constants';
+import { AboutTwitterScreen, ForgotPasswordScreen, MainScreen } from '../../../Screens';
 
-export default class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,7 +68,7 @@ export default class Login extends Component {
                   <View style={styles.logoView}>
                     {/* eslint-disable */}
                     <Image
-                      source={require('../assets/images/TwitterLogo.png')}
+                      source={require('../../assets/images/TwitterLogo.png')}
                       style={styles.logoStyle}
                     />
                     {/* eslint-enable */}

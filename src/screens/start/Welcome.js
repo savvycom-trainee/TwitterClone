@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import * as d from '../../Constants';
-import { Button, ButtonText } from '../components';
-import {
-  SignUpScreen, LoginScreen
-} from '../../Screens';
+import * as d from '../../../Constants';
+import { Button, ButtonText } from '../../components';
+import { SignUpScreen, LoginScreen } from '../../../Screens';
 
-export default class Welcome extends Component {
+export class Welcome extends Component {
   render() {
-  const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         {/* eslint-disable */}
-        <Image source={require('../assets/images/TwitterLogo.png')} style={styles.logoStyle} />
+        <Image source={require('../../assets/images/TwitterLogo.png')} style={styles.logoStyle} />
         {/* eslint-enable */}
         <View style={styles.signUpView}>
           <Text style={styles.textSignUpStyle}>
@@ -27,11 +25,7 @@ export default class Welcome extends Component {
         </View>
         <View style={styles.loginView}>
           <Text style={styles.textLoginStyle}>{'Have an account already? '}</Text>
-          <ButtonText
-            text="Log in"
-            color="#1CABE9"
-            onPress={() => navigate(LoginScreen)}
-          />
+          <ButtonText text="Log in" color="#1CABE9" onPress={() => navigate(LoginScreen)} />
         </View>
       </View>
     );
@@ -62,5 +56,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     left: 35 * d.width,
     bottom: 40 * d.height
-  },
+  }
 });

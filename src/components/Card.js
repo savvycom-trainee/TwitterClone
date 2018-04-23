@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     borderColor: '#00000050',
     borderBottomWidth: 0.5,
     elevation: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     width: d.fullWidth,
     paddingLeft: 10,
     paddingTop: 10,

@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import * as d from '../../Constants';
 
-const Header = ({ centerHeader, rightHeader, onPressLeftIcon, onPressRightIcon }) => (
-  <View style={styles.container}>
-    <TouchableOpacity onPress={onPressLeftIcon} style={{ paddingLeft: 10 * d.width }}>
-      <Icon name="ios-contact-outline" size={35} />
-    </TouchableOpacity>
-    <View style={{ paddingTop: 3 * d.height }}>{centerHeader}</View>
-    <TouchableOpacity onPress={onPressRightIcon} style={{ paddingRight: 10 * d.width }}>
-      {rightHeader}
-    </TouchableOpacity>
-  </View>
-);
+export class Header extends Component {
+  render() {
+    const { leftHeader, centerHeader, rightHeader, onPressLeftIcon, onPressRightIcon } = this.props;
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={onPressLeftIcon} style={{ paddingLeft: 10 * d.width }}>
+          {leftHeader}
+        </TouchableOpacity>
+        <View style={{ paddingTop: 3 * d.height }}>{centerHeader}</View>
+        <TouchableOpacity onPress={onPressRightIcon} style={{ paddingRight: 10 * d.width }}>
+          {rightHeader}
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -25,5 +29,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF'
   }
 });
-
-export { Header };

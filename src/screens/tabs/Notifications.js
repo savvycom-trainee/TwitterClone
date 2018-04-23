@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Image, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Image,
+  FlatList,
+  ScrollView
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Header, Card } from '../../components';
 import * as d from '../../../Constants';
@@ -10,29 +18,31 @@ class AllTab extends Component {
     return (
       <View style={styles.container}>
         <Card>
-          <View style={{ flex: 2 }}>
-            {/* eslint-disable */}
-            <Image
-              source={require('../../assets/images/TwitterLogo.png')}
-              style={{
-                width: 30 * d.width,
-                height: 30 * d.height,
-                alignSelf: 'flex-end',
-                marginRight: 15 * d.width
-              }}
-            />
-            {/* eslint-enable */}
-          </View>
-          <View style={{ flex: 7, marginRight: 15 * d.width }}>
-            <View style={styles.headerNotiView}>
-              <Image source={this.props.item.ava} style={styles.imageStyle} />
-              <Icon name="ios-arrow-down-outline" size={18} style={{ color: '#00000060' }} />
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 2 }}>
+              {/* eslint-disable */}
+              <Image
+                source={require('../../assets/images/TwitterLogo.png')}
+                style={{
+                  width: 30 * d.width,
+                  height: 30 * d.height,
+                  alignSelf: 'flex-end',
+                  marginRight: 15 * d.width
+                }}
+              />
+              {/* eslint-enable */}
             </View>
-            <View style={{ marginBottom: 5 }}>
-              <Text style={{ fontSize: 14 }}>{this.props.item.notiStatus}</Text>
-            </View>
-            <View>
-              <Text style={{ color: '#00000060', fontSize: 14 }}>{this.props.item.status}</Text>
+            <View style={{ flex: 7, marginRight: 15 * d.width }}>
+              <View style={styles.headerNotiView}>
+                <Image source={this.props.item.ava} style={styles.imageStyle} />
+                <Icon name="ios-arrow-down-outline" size={18} style={{ color: '#00000060' }} />
+              </View>
+              <View style={{ marginBottom: 5 }}>
+                <Text style={{ fontSize: 14 }}>{this.props.item.notiStatus}</Text>
+              </View>
+              <View>
+                <Text style={{ color: '#00000060', fontSize: 14 }}>{this.props.item.status}</Text>
+              </View>
             </View>
           </View>
         </Card>
@@ -65,11 +75,19 @@ class MentionTab extends Component {
 }
 
 export class Notifications extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header
+        leftHeader={<Icon name="ios-contact-outline" size={35} />}
+        centerHeader={<Text style={{ fontSize: 20, fontWeight: '700' }}>{'Notifications'}</Text>}
+        rightHeader={<Icon name="ios-settings-outline" size={35} style={{ color: '#1CABE9' }} />}
+        onPressLeftIcon={() => navigation.navigate('DrawerOpen')}
+      />
+    ),
     tabBarIcon: ({ tintColor }) => (
       <Icon name="ios-notifications-outline" size={35} style={{ color: tintColor }} />
     )
-  };
+  });
 
   constructor(props) {
     super(props);
@@ -80,86 +98,89 @@ export class Notifications extends Component {
   }
 
   render() {
+    console.log(this.state.allTabChosen);
     return (
       <View style={{ flex: 1 }}>
-        <Header
-          centerHeader={
-            <View style={styles.centerHeaderView}>
-              <Text style={styles.centerHeaderStyle}>{'Notifications'}</Text>
-              <View style={styles.centerHeaderChild}>
-                <TouchableWithoutFeedback
-                  onPress={() => {
-                    this.setState({
-                      allTabChosen: true,
-                      mentionTabChosen: false
-                    });
+        <ScrollView>
+          <View
+            style={{
+              backgroundColor: '#FFFFFF',
+              paddingTop: 5 * d.height,
+              paddingBottom: 5 * d.height
+            }}
+          >
+            <View style={styles.centerHeaderChild}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  this.setState({
+                    allTabChosen: true,
+                    mentionTabChosen: false
+                  });
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: this.state.allTabChosen === true ? '#1CABE9' : null,
+                    width: 177.5,
+                    borderTopLeftRadius: 20,
+                    borderBottomLeftRadius: 20,
+                    flex: 0.5,
+                    alignContent: 'center'
                   }}
                 >
-                  <View
+                  <Text
                     style={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: this.state.allTabChosen === true ? '#1CABE9' : null,
-                      width: 177.5,
-                      borderTopLeftRadius: 20,
-                      borderBottomLeftRadius: 20,
-                      flex: 0.5,
-                      alignContent: 'center'
+                      color: this.state.allTabChosen === true ? '#FFFFFF' : '#1CABE9'
                     }}
                   >
-                    <Text
-                      style={{
-                        color: this.state.allTabChosen === true ? '#FFFFFF' : '#1CABE9'
-                      }}
-                    >
-                      {'All'}
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback
-                  onPress={() => {
-                    this.setState({
-                      allTabChosen: false,
-                      mentionTabChosen: true
-                    });
+                    {'All'}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  this.setState({
+                    allTabChosen: false,
+                    mentionTabChosen: true
+                  });
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: this.state.mentionTabChosen === true ? '#1CABE9' : null,
+                    width: 177.5,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
+                    flex: 0.5,
+                    alignContent: 'center'
                   }}
                 >
-                  <View
+                  <Text
                     style={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: this.state.mentionTabChosen === true ? '#1CABE9' : null,
-                      width: 177.5,
-                      borderTopRightRadius: 20,
-                      borderBottomRightRadius: 20,
-                      flex: 0.5,
-                      alignContent: 'center'
+                      color: this.state.mentionTabChosen === true ? '#FFFFFF' : '#1CABE9'
                     }}
                   >
-                    <Text
-                      style={{
-                        color: this.state.mentionTabChosen === true ? '#FFFFFF' : '#1CABE9'
-                      }}
-                    >
-                      {'Mentions'}
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
+                    {'Mentions'}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
             </View>
-          }
-          rightHeader={<Icon name="ios-settings-outline" size={35} style={{ color: '#1CABE9' }} />}
-        />
-        <FlatList
-          data={posts}
-          renderItem={({ item, index }) => {
-            if (this.state.allTabChosen) {
-              return <AllTab item={item} index={index} />;
-            }
-            return <MentionTab />;
-          }}
-          keyExtractor={item => item.status}
-        />
+          </View>
+          <View>
+            <FlatList
+              data={this.state.allTabChosen ? posts : [{ status: 'abc' }]}
+              extraData={this.state}
+              renderItem={({ item }) =>
+                this.state.allTabChosen ? <AllTab item={item} /> : <MentionTab />
+              }
+              keyExtractor={item => item.status}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -167,7 +188,8 @@ export class Notifications extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
   },
   centerHeaderStyle: {
     fontSize: 20,
@@ -183,10 +205,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#1CABE9',
     flexDirection: 'row',
-    position: 'absolute',
     alignSelf: 'center',
-    marginTop: 43 * d.height,
-    borderRadius: 20
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF'
   },
   headerNotiView: {
     flexDirection: 'row',

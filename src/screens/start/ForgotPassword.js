@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
-import { ButtonText, SmallButton } from '../components';
-import * as d from '../../Constants';
+import { ButtonText, SmallButton } from '../../components';
+import * as d from '../../../Constants';
 
-export default class ForgotPassword extends Component {
+export class ForgotPassword extends Component {
   render() {
     return (
       <View style={styles.container}>
