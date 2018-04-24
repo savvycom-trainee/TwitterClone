@@ -13,16 +13,23 @@ import { Home, Search, Notifications, Message } from './src/screens/tabs';
 import { AboutTwitter, ForgotPassword, Login, SignUp, Welcome } from './src/screens/start';
 import { Profile, Lists, Bookmarks, Moments, Account } from './src/screens/drawerTabs';
 import AbsolutePost from './src/screens/Tweet/AbsolutePost';
+import Splash from './src/screens/Splash';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: true
+    };
+    setTimeout(() => {
+      this.setState({ screen: false });
+    }, 2000);
+  }
+
   render() {
     YellowBox.ignoreWarnings(['Remote debugger is in a background tab']);
     YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
-    return (
-      <View style={{ flex: 1 }}>
-        <DrawerNavigation />
-      </View>
-    );
+    return <View style={{ flex: 1 }}>{this.state.screen ? <Splash /> : <DrawerNavigation />}</View>;
   }
 }
 
@@ -141,7 +148,7 @@ const Stack = StackNavigator(
     }
   },
   {
-    initialRouteName: 'MainScreen'
+    // initialRouteName: 'MainScreen'
   }
 );
 const DrawerNavigation = DrawerNavigator(

@@ -5,6 +5,21 @@ import { Card, Header } from '../../components';
 import * as d from '../../../Constants';
 
 export default class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: false,
+      numberOfLike: 825
+    };
+  }
+
+  onPressLike = () => {
+    this.setState({
+      liked: !this.state.liked,
+      numberOfLike: !this.state.liked ? this.state.numberOfLike + 1 : this.state.numberOfLike - 1
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -75,14 +90,20 @@ export default class Post extends Component {
                 style={styles.reactIconStyle}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../../assets/icons/Heart.png')}
-                style={styles.reactIconStyle}
-              />
+            <TouchableOpacity
+              style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 * d.height }}
+              onPress={this.onPressLike}
+            >
+              {this.state.liked === false ? (
+                <Icon name="ios-heart-outline" size={25} style={{ color: '#000000' }} />
+              ) : (
+                <Icon name="ios-heart" size={25} style={{ color: '#DD4A57' }} />
+              )}
+              <Text style={{ fontSize: 12, marginTop: 5 * d.height, marginLeft: 5 * d.height }}>
+                {this.state.numberOfLike}
+              </Text>
             </TouchableOpacity>
-            {/* eslint-enable */}
-            <TouchableOpacity>
+            <TouchableOpacity style={{ marginTop: 5 * d.height }}>
               <Icon name="ios-cloud-upload-outline" size={25} style={{ color: '#000000' }} />
             </TouchableOpacity>
           </View>

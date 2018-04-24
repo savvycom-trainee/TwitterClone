@@ -18,9 +18,18 @@ class HomeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: null
+      activeIndex: null,
+      liked: false,
+      numberOfLike: 825
     };
   }
+
+  onPressLike = () => {
+    this.setState({
+      liked: !this.state.liked,
+      numberOfLike: !this.state.liked ? this.state.numberOfLike + 1 : this.state.numberOfLike - 1
+    });
+  };
 
   render() {
     const { navigation } = this.props;
@@ -128,12 +137,20 @@ class HomeView extends Component {
                     />
                     <Text style={{ fontSize: 12 }}>71</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
-                    <Image
-                      source={require('../../assets/icons/Heart.png')}
-                      style={styles.reactIconStyle}
-                    />
-                    <Text style={{ fontSize: 12 }}>825</Text>
+                  <TouchableOpacity
+                    style={{ paddingLeft: 30, flexDirection: 'row' }}
+                    onPress={this.onPressLike}
+                  >
+                    {this.state.liked === false ? (
+                      <Icon name="ios-heart-outline" size={25} style={{ color: '#000000' }} />
+                    ) : (
+                      <Icon name="ios-heart" size={25} style={{ color: '#DD4A57' }} />
+                    )}
+                    <Text
+                      style={{ fontSize: 12, marginTop: 5 * d.height, marginLeft: 5 * d.height }}
+                    >
+                      {this.state.numberOfLike}
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row' }}>
                     <Icon name="ios-cloud-upload-outline" size={25} style={{ color: '#000000' }} />
