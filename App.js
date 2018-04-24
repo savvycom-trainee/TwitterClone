@@ -127,6 +127,12 @@ const Stack = StackNavigator(
         header: null
       }
     },
+    NotificationScreen: {
+      screen: Notifications,
+      navigationOptions: {
+        header: null
+      }
+    },
     AbsolutePostScreen: {
       screen: AbsolutePost,
       navigationOptions: {
