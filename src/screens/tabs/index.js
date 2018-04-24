@@ -1,4 +1,4 @@
-export * from './Home';
+export * from './home/Home';
 export * from './Message';
-export * from './Notifications';
+export * from './notification/Notifications';
 export * from './Search';

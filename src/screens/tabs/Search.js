@@ -11,14 +11,7 @@ export class Search extends Component {
         leftHeader={<Icon name="ios-contact-outline" size={35} />}
         centerHeader={
           <TextInput
-            style={{
-              backgroundColor: '#00000008',
-              fontSize: 16,
-              width: 270,
-              height: 30,
-              borderRadius: 20,
-              paddingLeft: 80 * d.width
-            }}
+            style={styles.inputHeaderStyle}
             placeholder={'Search Twitter'}
             placeholderTextColor="#75808E"
           />
@@ -31,9 +24,6 @@ export class Search extends Component {
       <Icon name="ios-search-outline" size={35} style={{ color: tintColor }} />
     )
   });
-
-  searchIcon = () => <Icon name="ios-search-outline" size={20} />;
-
   render() {
     return <View style={styles.container} />;
   }
@@ -44,6 +34,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   textInputStyle: {
+    backgroundColor: '#00000008',
+    fontSize: 16,
+    width: 270,
+    height: 30,
+    borderRadius: 20,
+    paddingLeft: 80 * d.width
+  },
+  inputHeaderStyle: {
     backgroundColor: '#00000008',
     fontSize: 16,
     width: 270,

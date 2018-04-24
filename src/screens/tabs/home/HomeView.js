@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  TouchableHighLight
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Header, Card } from '../../components';
-import * as d from '../../../Constants';
-import posts from '../../../data/posts';
-import { AbsolutePostScreen } from '../../../Screens';
+import { Card } from '../../../components';
+import * as d from '../../../../Constants';
+import { AbsolutePostScreen } from '../../../../Screens';
+import styles from './styles';
 
-class HomeView extends Component {
+export default class HomeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -125,14 +117,14 @@ class HomeView extends Component {
                   {/* eslint-disable */}
                   <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Image
-                      source={require('../../assets/icons/Comment.png')}
+                      source={require('../../../assets/icons/Comment.png')}
                       style={styles.reactIconStyle}
                     />
                     <Text style={{ fontSize: 12 }}>22</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
                     <Image
-                      source={require('../../assets/icons/Retweet.png')}
+                      source={require('../../../assets/icons/Retweet.png')}
                       style={styles.reactIconStyle}
                     />
                     <Text style={{ fontSize: 12 }}>71</Text>
@@ -165,83 +157,3 @@ class HomeView extends Component {
     );
   }
 }
-
-export class Home extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: (
-      <Header
-        leftHeader={<Icon name="ios-contact-outline" size={35} />}
-        centerHeader={
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: '700'
-            }}
-          >
-            {'Home'}
-          </Text>
-        }
-        rightHeader={<Icon name="ios-add-outline" size={35} style={{ color: '#1CABE9' }} />}
-        onPressLeftIcon={() => navigation.navigate('DrawerOpen')}
-      />
-    ),
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name="ios-home-outline" size={35} style={{ color: tintColor }} />
-    )
-  });
-
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          data={posts}
-          renderItem={({ item, index }) => (
-            <HomeView navigation={this.props.navigation} item={item} activeIndex={index} />
-          )}
-          keyExtractor={item => item.status}
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EBEEF2'
-  },
-  centerHeaderStyle: {
-    fontSize: 20,
-    fontWeight: '700'
-  },
-  avaView: {
-    paddingRight: 10 * d.width,
-    flex: 1
-  },
-  avaStyle: {
-    height: 50 * d.height,
-    width: 50 * d.width,
-    borderRadius: 25
-  },
-  postView: {
-    // marginRight: 10,
-    paddingRight: 10 * d.width,
-    flex: 6
-  },
-  infoView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  attachmentView: {
-    marginTop: 12 * d.height,
-    marginBottom: 7 * d.height
-  },
-  reactView: {
-    flexDirection: 'row'
-  },
-  reactIconStyle: {
-    width: 16 * d.width,
-    height: 16 * d.height,
-    marginRight: 5 * d.width
-  }
-});
