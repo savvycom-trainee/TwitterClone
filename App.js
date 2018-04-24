@@ -11,6 +11,8 @@ import Main from './src/screens/Main';
 import DrawerScreen from './src/screens/DrawerScreen';
 import { Home, Search, Notifications, Message } from './src/screens/tabs';
 import { AboutTwitter, ForgotPassword, Login, SignUp, Welcome } from './src/screens/start';
+import { Profile, Lists, Bookmarks, Moments, Account } from './src/screens/drawerTabs';
+import AbsolutePost from './src/screens/Tweet/AbsolutePost';
 
 export default class App extends Component {
   render() {
@@ -88,6 +90,48 @@ const Stack = StackNavigator(
     },
     MainScreen: {
       screen: MainNavigator
+    },
+    ProfileScreen: {
+      screen: Profile,
+      navigationOptions: {
+        header: null
+      }
+    },
+    ListScreen: {
+      screen: Lists,
+      navigationOptions: {
+        header: null
+      }
+    },
+    BookmarkScreen: {
+      screen: Bookmarks,
+      navigationOptions: {
+        header: null
+      }
+    },
+    MomentScreen: {
+      screen: Moments,
+      navigationOptions: {
+        header: null
+      }
+    },
+    AccountScreen: {
+      screen: Account,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        header: null
+      }
+    },
+    AbsolutePostScreen: {
+      screen: AbsolutePost,
+      navigationOptions: {
+        header: null
+      }
     }
   },
   {
@@ -102,5 +146,6 @@ const DrawerNavigation = DrawerNavigator(
   },
   {
     contentComponent: DrawerScreen
+    // initialRouteName: 'Drawer'
   }
 );

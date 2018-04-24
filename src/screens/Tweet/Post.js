@@ -8,11 +8,6 @@ export default class Post extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header
-          leftHeader={<Icon name="ios-arrow-back-outline" size={35} style={{ color: '#1CABE9' }} />}
-          centerHeader={<Text style={{ fontSize: 18, fontWeight: '800' }}> {'Tweet'}</Text>}
-          rightHeader={<Icon name="ios-add-outline" size={35} style={{ color: '#1CABE9' }} />}
-        />
         <Card>
           <View style={styles.infoView}>
             <View style={{ flexDirection: 'row' }}>

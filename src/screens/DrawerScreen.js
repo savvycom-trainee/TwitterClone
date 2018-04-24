@@ -8,7 +8,13 @@ import {
   ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { BookmarkScreen, ProfileScreen, ListScreen, MomentScreen } from '../../Screens';
+import {
+  BookmarkScreen,
+  ProfileScreen,
+  ListScreen,
+  MomentScreen,
+  AccountScreen
+} from '../../Screens';
 import * as d from '../../Constants';
 import { DrawerButton } from '../components';
 
@@ -20,11 +26,11 @@ export default class DrawerScreen extends Component {
         <View>
           <View style={styles.headerDrawer}>
             <Icon name="ios-contact-outline" size={50} />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate(AccountScreen)}>
               <Icon name="ios-more-outline" size={35} style={{ color: '#1CABE9' }} />
             </TouchableOpacity>
           </View>
-          <View style={{ paddingHorizontal: 20 * d.width }}>
+          <View style={{ paddingHorizontal: 20 * d.width, marginBottom: 10 * d.height }}>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{'huy'}</Text>
             <Text style={{ fontSize: 15, color: '#00000050' }}>{'@hoanghuy272'}</Text>
             <View
@@ -52,40 +58,42 @@ export default class DrawerScreen extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.bodyDrawer}>
-              <DrawerButton
-                iconName="ios-person-outline"
-                text="Profile"
-                onPress={() => navigation.navigate(ProfileScreen)}
-              />
-              <DrawerButton
-                iconName="ios-list-box-outline"
-                text="Lists"
-                onPress={() => navigation.navigate(ListScreen)}
-              />
-              <DrawerButton
-                iconName="ios-bookmark-outline"
-                text="Bookmarks"
-                onPress={() => navigation.navigate(BookmarkScreen)}
-              />
-              <DrawerButton
-                iconName="ios-thunderstorm-outline"
-                text="Moments"
-                onPress={() => navigation.navigate(MomentScreen)}
-              />
-            </View>
-            <View>
-              <DrawerButton
-                iconName={null}
-                text="Settings and privacy"
-                onPress={() => console.log('setting and privacy')}
-              />
-              <DrawerButton
-                iconName={null}
-                text="Help Center"
-                onPress={() => console.log('Help center')}
-              />
-            </View>
+            <ScrollView>
+              <View style={styles.bodyDrawer}>
+                <DrawerButton
+                  iconName="ios-person-outline"
+                  text="Profile"
+                  onPress={() => navigation.navigate(ProfileScreen)}
+                />
+                <DrawerButton
+                  iconName="ios-list-box-outline"
+                  text="Lists"
+                  onPress={() => navigation.navigate(ListScreen)}
+                />
+                <DrawerButton
+                  iconName="ios-bookmark-outline"
+                  text="Bookmarks"
+                  onPress={() => navigation.navigate(BookmarkScreen)}
+                />
+                <DrawerButton
+                  iconName="ios-thunderstorm-outline"
+                  text="Moments"
+                  onPress={() => navigation.navigate(MomentScreen)}
+                />
+              </View>
+              <View style={{ paddingTop: 10 * d.height }}>
+                <DrawerButton
+                  iconName={null}
+                  text="Settings and privacy"
+                  onPress={() => console.log('setting and privacy')}
+                />
+                <DrawerButton
+                  iconName={null}
+                  text="Help Center"
+                  onPress={() => console.log('Help center')}
+                />
+              </View>
+            </ScrollView>
           </View>
         </View>
         <View style={styles.footerDrawer}>
@@ -112,12 +120,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20 * d.width
+    // paddingTop: 10 * d.height
   },
   bodyDrawer: {
     height: 240 * d.height,
     borderBottomWidth: 0.5,
     borderColor: '#00000050',
-    paddingTop: 30 * d.height,
+    paddingTop: 20 * d.height,
     paddingBottom: 10 * d.height
   },
   footerDrawer: {

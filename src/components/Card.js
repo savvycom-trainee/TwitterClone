@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     // flexDirection: 'row',
     width: d.fullWidth,
-    paddingLeft: 10,
-    paddingTop: 10,
+    paddingLeft: 10 * d.width,
+    paddingTop: 10 * d.height,
     backgroundColor: '#FFFFFF',
     paddingBottom: 10 * d.height
   }

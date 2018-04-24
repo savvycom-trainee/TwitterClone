@@ -1,109 +1,149 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  TouchableHighLight
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Header, Card } from '../../components';
 import * as d from '../../../Constants';
 import posts from '../../../data/posts';
+import { AbsolutePostScreen } from '../../../Screens';
 
 class HomeView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeIndex: null
+    };
+  }
+
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         {/* a absolute post view */}
-
-        <Card>
-          {/* retweet */}
-          {this.props.item.retweet && (
-            <View
-              style={{ marginBottom: 5 * d.height, marginLeft: 40 * d.width, flexDirection: 'row' }}
-            >
-              <Image
-                source={this.props.item.retweetIcon}
+        <TouchableOpacity
+          activeOpacity={0.5}
+          underlayColor="#00000010"
+          onPress={() => {
+            console.log('card pressed');
+            this.setState({ activeIndex: this.props.index });
+            navigation.navigate(AbsolutePostScreen, { activeIndex: this.props.activeIndex });
+          }}
+        >
+          <Card>
+            {/* retweet */}
+            {this.props.item.retweet && (
+              <View
                 style={{
-                  width: 10 * d.width,
-                  height: 10 * d.height,
-                  marginTop: 5 * d.height,
-                  marginRight: 10 * d.width
+                  marginBottom: 5 * d.height,
+                  marginLeft: 40 * d.width,
+                  flexDirection: 'row'
                 }}
-              />
-              <Text style={{ color: '#00000080' }}>{this.props.item.retweetStatus}</Text>
-            </View>
-          )}
-          <View style={{ flexDirection: 'row' }}>
-            {/* avatar of the user */}
-            <View style={styles.avaView}>
-              {/* eslint-disable */}
-              <Image source={this.props.item.ava} style={styles.avaStyle} />
-              {/* eslint-enable */}
-            </View>
-            <View style={styles.postView}>
-              {/* information of the post */}
-              <View style={styles.infoView}>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 15, marginRight: 5 * d.width }}>
-                    {this.props.item.name}
-                  </Text>
-                  {this.props.item.tick && (
-                    <Icon
-                      name="ios-checkmark-circle"
-                      size={18}
-                      style={{ color: '#1CABE9', marginRight: 5 * d.width }}
+              >
+                <Image
+                  source={this.props.item.retweetIcon}
+                  style={{
+                    width: 10 * d.width,
+                    height: 10 * d.height,
+                    marginTop: 5 * d.height,
+                    marginRight: 10 * d.width
+                  }}
+                />
+                <Text style={{ color: '#00000080' }}>{this.props.item.retweetStatus}</Text>
+              </View>
+            )}
+            <View style={{ flexDirection: 'row' }}>
+              {/* avatar of the user */}
+              <TouchableOpacity
+                activeOpacity={0.5}
+                underlayColor="#00000010"
+                onPress={() => console.log('ava pressed')}
+              >
+                <View style={styles.avaView}>
+                  {/* eslint-disable */}
+                  <Image source={this.props.item.ava} style={styles.avaStyle} />
+                  {/* eslint-enable */}
+                </View>
+              </TouchableOpacity>
+              <View style={styles.postView}>
+                {/* information of the post */}
+                <View style={styles.infoView}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 15, marginRight: 5 * d.width }}>
+                      {this.props.item.name}
+                    </Text>
+                    {this.props.item.tick && (
+                      <Icon
+                        name="ios-checkmark-circle"
+                        size={18}
+                        style={{ color: '#1CABE9', marginRight: 5 * d.width }}
+                      />
+                    )}
+                    <Text style={{ color: '#00000080' }}>@{this.props.item.tag} </Text>
+                    <Text style={{ color: '#00000080' }}>• {this.props.item.time}</Text>
+                  </View>
+                  <View>
+                    <TouchableOpacity onPress={() => {}}>
+                      <Icon
+                        name="ios-arrow-down-outline"
+                        size={18}
+                        style={{ color: '#00000060' }}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                {/* content of the status */}
+                <View style={styles.statusView}>
+                  <Text style={{ fontSize: 15, fontWeight: '400' }}>{this.props.item.status}</Text>
+                </View>
+                {/* image or video attachment */}
+                {this.props.item.attachment && (
+                  <View style={styles.attachmentView}>
+                    <Image
+                      source={this.props.item.attachment}
+                      style={{ width: 290 * d.width, height: 180 * d.height, borderRadius: 15 }}
                     />
-                  )}
-                  <Text style={{ color: '#00000080' }}>@{this.props.item.tag} </Text>
-                  <Text style={{ color: '#00000080' }}>• {this.props.item.time}</Text>
-                </View>
-                <View>
-                  <TouchableOpacity onPress={() => {}}>
-                    <Icon name="ios-arrow-down-outline" size={18} style={{ color: '#00000060' }} />
+                  </View>
+                )}
+                {/* react features */}
+                <View style={styles.reactView}>
+                  {/* eslint-disable */}
+                  <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <Image
+                      source={require('../../assets/icons/Comment.png')}
+                      style={styles.reactIconStyle}
+                    />
+                    <Text style={{ fontSize: 12 }}>22</Text>
                   </TouchableOpacity>
+                  <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
+                    <Image
+                      source={require('../../assets/icons/Retweet.png')}
+                      style={styles.reactIconStyle}
+                    />
+                    <Text style={{ fontSize: 12 }}>71</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
+                    <Image
+                      source={require('../../assets/icons/Heart.png')}
+                      style={styles.reactIconStyle}
+                    />
+                    <Text style={{ fontSize: 12 }}>825</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row' }}>
+                    <Icon name="ios-cloud-upload-outline" size={25} style={{ color: '#000000' }} />
+                  </TouchableOpacity>
+                  {/* eslint-enable */}
                 </View>
-              </View>
-              {/* content of the status */}
-              <View style={styles.statusView}>
-                <Text style={{ fontSize: 15, fontWeight: '400' }}>{this.props.item.status}</Text>
-              </View>
-              {/* image or video attachment */}
-              {this.props.item.attachment && (
-                <View style={styles.attachmentView}>
-                  <Image
-                    source={this.props.item.attachment}
-                    style={{ width: 290 * d.width, height: 180 * d.height, borderRadius: 15 }}
-                  />
-                </View>
-              )}
-              {/* react features */}
-              <View style={styles.reactView}>
-                {/* eslint-disable */}
-                <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
-                  <Image
-                    source={require('../../assets/icons/Comment.png')}
-                    style={styles.reactIconStyle}
-                  />
-                  <Text style={{ fontSize: 12 }}>22</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
-                  <Image
-                    source={require('../../assets/icons/Retweet.png')}
-                    style={styles.reactIconStyle}
-                  />
-                  <Text style={{ fontSize: 12 }}>71</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row', marginTop: 5 }}>
-                  <Image
-                    source={require('../../assets/icons/Heart.png')}
-                    style={styles.reactIconStyle}
-                  />
-                  <Text style={{ fontSize: 12 }}>825</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingLeft: 30, flexDirection: 'row' }}>
-                  <Icon name="ios-cloud-upload-outline" size={25} style={{ color: '#000000' }} />
-                </TouchableOpacity>
-                {/* eslint-enable */}
               </View>
             </View>
-          </View>
-        </Card>
+          </Card>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -138,7 +178,9 @@ export class Home extends Component {
       <View style={{ flex: 1 }}>
         <FlatList
           data={posts}
-          renderItem={({ item, index }) => <HomeView item={item} index={index} />}
+          renderItem={({ item, index }) => (
+            <HomeView navigation={this.props.navigation} item={item} activeIndex={index} />
+          )}
           keyExtractor={item => item.status}
         />
       </View>
