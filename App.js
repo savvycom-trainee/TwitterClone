@@ -5,17 +5,20 @@
  */
 
 import React, { Component } from 'react';
-import { View, YellowBox, Text } from 'react-native';
+import { View, YellowBox } from 'react-native';
 import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import allReducers from './src/reducers/index';
 import Main from './src/screens/Main';
 import DrawerScreen from './src/screens/DrawerScreen';
-import { Home, Search, Notifications, Message } from './src/screens/tabs';
-import { AboutTwitter, ForgotPassword, Login, SignUp, Welcome } from './src/screens/start';
-import { Profile, Lists, Bookmarks, Moments, Account } from './src/screens/drawerTabs';
+import { Search, Notifications, Message, PostStatus, Home } from './src/screens/Tabs';
+import { AboutTwitter, ForgotPassword, Login, SignUp, Welcome } from './src/screens/Start';
+import { Profile, Lists, Bookmarks, Moments, Account } from './src/screens/DrawerTabs';
 import AbsolutePost from './src/screens/Tweet/AbsolutePost';
 import Splash from './src/screens/Splash';
 
-export default class App extends Component {
+class Twitter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +26,7 @@ export default class App extends Component {
     };
     setTimeout(() => {
       this.setState({ screen: false });
-    }, 2000);
+    }, 100);
   }
 
   render() {
@@ -32,6 +35,13 @@ export default class App extends Component {
     return <View style={{ flex: 1 }}>{this.state.screen ? <Splash /> : <DrawerNavigation />}</View>;
   }
 }
+
+const store = createStore(allReducers);
+const App = () => (
+  <Provider store={store}>
+    <Twitter />
+  </Provider>
+);
 
 const MainNavigator = TabNavigator(
   {
@@ -145,10 +155,16 @@ const Stack = StackNavigator(
       navigationOptions: {
         header: null
       }
+    },
+    PostStatusScreen: {
+      screen: PostStatus,
+      navigationOptions: {
+        header: null
+      }
     }
   },
   {
-    // initialRouteName: 'MainScreen'
+    initialRouteName: 'MainScreen'
   }
 );
 const DrawerNavigation = DrawerNavigator(
@@ -158,7 +174,9 @@ const DrawerNavigation = DrawerNavigator(
     Drawer: { screen: DrawerScreen }
   },
   {
-    contentComponent: DrawerScreen
-    // initialRouteName: 'Drawer'
+    contentComponent: DrawerScreen,
+    initialRouteName: 'Stack'
   }
 );
+
+export default App;

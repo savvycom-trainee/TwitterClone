@@ -22,7 +22,6 @@ export default class Comment extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         {/* a absolute post view */}

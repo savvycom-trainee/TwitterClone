@@ -1,4 +1,5 @@
-export * from './home/Home';
+export * from './Home/Home';
 export * from './Message';
-export * from './notification/Notifications';
+export * from './Notification/Notifications';
 export * from './Search';
+export * from './Home/PostStatus/PostStatus';

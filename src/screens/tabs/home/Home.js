@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
 import { Header } from '../../../components';
-import posts from '../../../../data/posts';
 import HomeView from './HomeView';
+import { PostStatusScreen } from '../../../../Screens';
+// import postStatusAction from '../../../actions/index';
 
-export class Home extends Component {
+class HomeTab extends Component {
   static navigationOptions = ({ navigation }) => ({
     header: (
       <Header
@@ -22,6 +24,7 @@ export class Home extends Component {
         }
         rightHeader={<Icon name="ios-add-outline" size={35} style={{ color: '#1CABE9' }} />}
         onPressLeftIcon={() => navigation.navigate('DrawerOpen')}
+        onPressRightIcon={() => navigation.navigate(PostStatusScreen)}
       />
     ),
     tabBarIcon: ({ tintColor }) => (
@@ -29,11 +32,15 @@ export class Home extends Component {
     )
   });
 
+  state = {
+    status: ''
+  };
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <FlatList
-          data={posts}
+          data={this.props.post}
           renderItem={({ item, index }) => (
             <HomeView navigation={this.props.navigation} item={item} activeIndex={index} />
           )}
@@ -43,3 +50,9 @@ export class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  post: state.postStatusReducer
+});
+
+export const Home = connect(mapStateToProps)(HomeTab);

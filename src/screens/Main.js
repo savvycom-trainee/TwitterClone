@@ -1,5 +1,5 @@
 import { TabNavigator } from 'react-navigation';
-import { Home, Search, Notifications, Message } from './tabs';
+import { Search, Notifications, Message, Home } from './Tabs';
 
 const Main = TabNavigator(
   {

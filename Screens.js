@@ -12,3 +12,4 @@ export const AccountScreen = 'AccountScreen';
 export const DrawerScreen = 'DrawerScreen';
 export const AbsolutePostScreen = 'AbsolutePostScreen';
 export const NotificationScreen = 'NotificationScreen';
+export const PostStatusScreen = 'PostStatusScreen';

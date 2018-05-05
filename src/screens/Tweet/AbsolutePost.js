@@ -11,7 +11,6 @@ export default class AbsolutePost extends Component {
   render() {
     const { navigation } = this.props;
     const activeIndex = navigation.state.params ? navigation.state.params.activeIndex : null;
-    const notiActiveIndex = navigation.state.params ? navigation.state.params.activeIndex : null;
     return (
       <View style={{ flex: 1 }}>
         <Header

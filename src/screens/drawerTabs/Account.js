@@ -10,7 +10,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Header } from '../../components/Header';
 import * as d from '../../../Constants';
-import { Card } from '../../components';
 import { DrawerScreen } from '../../../Screens';
 
 export class Account extends Component {

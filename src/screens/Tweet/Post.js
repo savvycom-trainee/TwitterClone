@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Card, Header } from '../../components';
+import { Card } from '../../components';
 import * as d from '../../../Constants';
 
 export default class Post extends Component {
