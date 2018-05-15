@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
-import { View, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  CameraRoll
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import { Header, SmallButton } from '../../../../components';
 import postStatusAction from '../../../../actions/index';
+import { AlbumsScreen } from '../../../../../Screens';
 
 class PostStatusTab extends Component {
   state = {
-    status: ''
+    status: '',
+    photos: []
+  };
+
+  componentDidMount() {
+    this.handleOnPress();
+  }
+
+  handleOnPress = () => {
+    CameraRoll.getPhotos({
+      first: 30,
+      assetType: 'Photos'
+    })
+      .then(result => {
+        this.setState({ photos: result.edges });
+      })
+      .catch(err => {
+        console.log(`Access Camera Roll got error: ${err}`);
+      });
   };
 
   render() {
@@ -24,8 +50,6 @@ class PostStatusTab extends Component {
               onPress={() => {
                 navigation.goBack();
                 this.props.onPostStatus('', this.state.status, '');
-                // console.log(this.props.onPostStatus('20h', this.state.status, ''));
-                console.log(this.props.post);
               }}
             />
           }
@@ -61,7 +85,11 @@ class PostStatusTab extends Component {
             alignItems: 'center'
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(AlbumsScreen, { albums: this.state.photos });
+            }}
+          >
             <Icon
               name="ios-image"
               size={25}
@@ -69,6 +97,7 @@ class PostStatusTab extends Component {
               style={{ paddingLeft: 15, paddingRight: 10 }}
             />
           </TouchableOpacity>
+
           <TouchableOpacity>
             <Icon
               name="ios-videocam"
@@ -77,6 +106,7 @@ class PostStatusTab extends Component {
               style={{ paddingLeft: 15, paddingRight: 10 }}
             />
           </TouchableOpacity>
+
           <TouchableOpacity>
             <Icon
               name="ios-clipboard"
@@ -85,6 +115,7 @@ class PostStatusTab extends Component {
               style={{ paddingLeft: 15, paddingRight: 10 }}
             />
           </TouchableOpacity>
+
           <TouchableOpacity>
             <Icon
               name="ios-compass"

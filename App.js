@@ -12,7 +12,7 @@ import { createStore } from 'redux';
 import allReducers from './src/reducers/index';
 import Main from './src/screens/Main';
 import DrawerScreen from './src/screens/DrawerScreen';
-import { Search, Notifications, Message, PostStatus, Home } from './src/screens/Tabs';
+import { Search, Notifications, Message, PostStatus, Home, Albums } from './src/screens/Tabs';
 import { AboutTwitter, ForgotPassword, Login, SignUp, Welcome } from './src/screens/Start';
 import { Profile, Lists, Bookmarks, Moments, Account } from './src/screens/DrawerTabs';
 import AbsolutePost from './src/screens/Tweet/AbsolutePost';
@@ -161,10 +161,16 @@ const Stack = StackNavigator(
       navigationOptions: {
         header: null
       }
+    },
+    AlbumsScreen: {
+      screen: Albums,
+      navigationOptions: {
+        header: null
+      }
     }
   },
   {
-    initialRouteName: 'MainScreen'
+    initialRouteName: 'PostStatusScreen'
   }
 );
 const DrawerNavigation = DrawerNavigator(
